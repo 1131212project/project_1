@@ -5,7 +5,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module systolic_3x3#(
     parameter int_bits=13 )(
-    input clk, reset, weight_en, weight_sel,
+    input clk, reset, weight_en, weight_mode,
     // 每個 row 的輸入 (in_ele / psum) 共三組
     input  [int_bits-1:0] in0,  psum_in0,
     input  [int_bits-1:0] in1,  psum_in1,
@@ -31,8 +31,8 @@ wire [int_bits-1:0] ele0_2, psum0_2, ele1_2, psum1_2, ele2_2, psum2_2;
 // ======================================================================
 // col0, row0 => u0_0
 wire [int_bits-1:0]PE_in0,PE_in1,PE_in2;
-assign PE_in0 = weight_sel? in1_out : in0;
-assign PE_in1 = weight_sel? in2_out : in1;
+assign PE_in0 = weight_mode? in1_out : in0;
+assign PE_in1 = weight_mode? in2_out : in1;
 assign PE_in2 = in2;
 
 PE #(int_bits)u0_0 (
