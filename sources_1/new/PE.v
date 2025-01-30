@@ -1,7 +1,8 @@
 //////////////////////////////////////////////////////////////////////////////////
-// Engineer: Felix
-// Create Date: 2025/01/29 18:31:16
+// Engineer: paul
+// Create Date: 2025/01/09 18:31:16
 // Module Name: PE
+// 250130 1722 Felix refine the module
 //////////////////////////////////////////////////////////////////////////////////
 
 module PE#(
@@ -12,8 +13,7 @@ module PE#(
     output [int_bits-1:0] out_psum
     );
     
-reg [int_bits-1:0] ele,weight,psum,buffer;    
-wire [int_bits-1:0]mul,add;
+reg [int_bits-1:0] weight,psum;    
  
 
 //weight register    
@@ -26,27 +26,15 @@ always@( posedge weight_en , posedge reset)begin
     end
 end
 
-mul_int#(int_bits) u0(in_ele , weight , mul );
-adder_int#(int_bits) u1( mul , in_psum , add );
-
-
 //Psum register
 always@( posedge clk , posedge reset)begin
     if( reset )begin
         psum <= 0;
-    end
-    else begin
-        psum <= add;
-    end
-end
-
-//out_ele register
-always@( posedge clk , posedge reset)begin
-    if( reset )begin
         out_ele <= 0;
     end
     else begin
         out_ele <= in_ele;
+        psum <= in_ele*weight + in_psum;
     end
 end
 
