@@ -1,16 +1,11 @@
 //////////////////////////////////////////////////////////////////////////////////
-// Engineer: paul
-// Create Date: 2024/01/20
-// Design Name: Systolic Array 3x3 (Modified)
-// Note:
-//250118 Felix
-//   1. 改用 PE 模組 (假設介面: PE(clk, weight_en, reset, in_data, in_psum, out_ele, out_psum))
-//   2. 不使用 generate 語法，直接列舉
-//   3. 將每一行最後一級的 out_ele 做為 inX_out 輸出
+// Engineer: Felix
+// Create Date: 2025/01/30
+// Design Name: systolic_3x3 
 //////////////////////////////////////////////////////////////////////////////////
 module systolic_3x3#(
-    parameter int_bits=13)(
-    input clk, reset, weight_en,
+    parameter int_bits=13 )(
+    input clk, reset, weight_en, weight_sel,
     // 每個 row 的輸入 (in_ele / psum) 共三組
     input  [int_bits-1:0] in0,  psum_in0,
     input  [int_bits-1:0] in1,  psum_in1,
@@ -35,9 +30,14 @@ wire [int_bits-1:0] ele0_2, psum0_2, ele1_2, psum1_2, ele2_2, psum2_2;
 // Row0: col0→col1→col2
 // ======================================================================
 // col0, row0 => u0_0
+wire [int_bits-1:0]PE_in0,PE_in1,PE_in2;
+assign PE_in0 = weight_sel? in1_out : in0;
+assign PE_in1 = weight_sel? in2_out : in1;
+assign PE_in2 = in2;
+
 PE #(int_bits)u0_0 (
     .clk(clk), .weight_en(weight_en), .reset(reset),
-    .in_ele(in0), .in_psum(psum_in0),
+    .in_ele(PE_in0), .in_psum(psum_in0),
     .out_ele(ele0_0), .out_psum(psum0_0)
 );
 // col1, row0 => u1_0
@@ -59,7 +59,7 @@ PE #(int_bits)u2_0 (
 // col0, row1 => u0_1
 PE #(int_bits)u0_1 (
     .clk(clk), .weight_en(weight_en), .reset(reset),
-    .in_ele(in1), .in_psum(psum0_0),
+    .in_ele(PE_in1), .in_psum(psum0_0),
     .out_ele(ele0_1), .out_psum(psum0_1)
 );
 // col1, row1 => u1_1
@@ -81,7 +81,7 @@ PE #(int_bits)u2_1 (
 // col0, row2 => u0_2
 PE #(int_bits)u0_2 (
     .clk(clk), .weight_en(weight_en), .reset(reset),
-    .in_ele(in2), .in_psum(psum0_1),
+    .in_ele(PE_in2), .in_psum(psum0_1),
     .out_ele(ele0_2), .out_psum(psum0_2)
 );
 // col1, row2 => u1_2
