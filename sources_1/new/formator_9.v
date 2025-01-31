@@ -8,7 +8,7 @@ module formator_9#(
     parameter int_bits=20 )(
     input clk,reset,
     input [int_bits-1:0] in [8:0],
-    output reg [int_bits-1:0] out[9:0]
+    output reg [int_bits-1:0] out[8:0]
     );
 
 reg [int_bits-1:0] shifter [8:1][8:1];
