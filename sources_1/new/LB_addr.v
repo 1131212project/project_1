@@ -6,7 +6,7 @@
 
 module LB_addr#(
     parameter LC_bits = 20,
-    parameter extra_latency = 5;
+    parameter extra_latency = 5
 )(
     input fclk, reset, vaild,
     input [LC_bits-1:0] layer_code,
@@ -15,8 +15,7 @@ module LB_addr#(
     );
 
 wire [11:0] s;
-assign s = {layer_code[LC_bits-1-8 : LC_bits-1-8-10] , 0};
-
+assign s = {layer_code[LC_bits-1-8 : LC_bits-1-8-10] , 0} - extra_latency;
 
 always @(posedge fclk, posedge reset) begin
     if(reset)begin
@@ -30,7 +29,7 @@ always @(posedge fclk, posedge reset) begin
         end
         else begin
             addr <= addr;
-            sel <= sel
+            sel <= sel;
         end
     end
 end

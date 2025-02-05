@@ -6,13 +6,14 @@
 
 module line_buffer#(
     parameter int_bits=13,
-    parameter LC_bits=20 )(
-    input clk,reset,fclk,
+    parameter LC_bits=20,
+    parameter extra_latency=5 )(
+    input clk,reset,fclk,valid,
     input [LC_bits-1:0] layer_code,
     input [int_bits-1:0] in[8:0],
     input [int_bits*2-1:0] reuse[8:0],
     output [int_bits*3-1:0] out[8:0]
-    );
+);
 
 wire [7:0] RAM_out [8:0], RAM_in[8:0];
 wire sel;
@@ -27,7 +28,6 @@ generate
     end
 endgenerate
 
-
 wire [9:0] addr;
 wire wea;
 RAM_line_buffer RAM_line_buffer (
@@ -36,6 +36,10 @@ RAM_line_buffer RAM_line_buffer (
     .douta( { RAM_out[8],RAM_out[7],RAM_out[6],RAM_out[5],RAM_out[4],RAM_out[3],RAM_out[2],RAM_out[1],RAM_out[0]} )
 );
 
-
+LB_addr #( .LC_bits(LC_bits), .extra_latency(extra_latency)) LB_addr (
+    .fclk(fclk), .reset(reset), .valid(valid),
+    .layer_code(layer_code), .addr(addr),
+    .sel(sel)
+);
 
 endmodule

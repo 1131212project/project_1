@@ -27,15 +27,22 @@ systolic_9x9 #( .int_bits(int_bits) ) ST_9x9 (
     .in_out( { in_out[8],in_out[7],in_out[6],in_out[5],in_out[4],in_out[3],in_out[2],in_out[1],in_out[0]} ),
     .psum_g( psum_g )
 );
+wire [int_bits-1:0] psum[8:0], DFM_out[8:0];
+assign { psum[8],psum[7],psum[6],psum[5],psum[4],psum[3],psum[2],psum[1],psum[0]} = psum_g;
+formator_9 #(.int_bits(int_bits)) deformator_9 (
+    .clk(clk), .reset(reset),
+    .in( { psum[8],psum[7],psum[6],psum[5],psum[4],psum[3],psum[2],psum[1],psum[0]} ),
+    .out( { DFM_out[8],DFM_out[7],DFM_out[6],DFM_out[5],DFM_out[4],DFM_out[3],DFM_out[2],DFM_out[1],DFM_out[0]} )
+);
 
-wire [int_bits-1:0] psum[8:0], BN_config_in_t[9:0][1:0], BN_out[8:0], ReLU_out[8:0];
+wire [int_bits-1:0] BN_config_in_t[9:0][1:0], BN_out[8:0], ReLU_out[8:0];
 assign BN_config_in_t[0] = BN_config_in;
 genvar i;
 generate
     for (i=0; i<9; i=i+1)begin : BN_ReLU_gen
         BN#(.int_bits(int_bits)) BN (
             .clk(clk), .reset(reset), .weight_en(weight_en),
-            .in(psum[i]), .config_in( BN_config_in_t[i] ),
+            .in(DFM_out[i]), .config_in( BN_config_in_t[i] ),
             .out(BN_out[i]), .config_out( BN_config_in_t[i+1] )
         );
 
