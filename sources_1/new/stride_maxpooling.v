@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2025/02/05 22:22:56
+// Create Date: 2025/02/05 23:44:43
 // Design Name: 
-// Module Name: comp_1_2-5
+// Module Name: stride_maxpooling
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module comp_1_2to5(
+module stride_maxpooling(
 
     );
 endmodule
