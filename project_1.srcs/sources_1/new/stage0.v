@@ -6,10 +6,9 @@
 
 module stage0#( 
     parameter int_bits=13 )(
-    input clk,reset,latency_in,weight_en, weight_mode, relu_sel, skip_stage0,
+    input clk,reset,weight_en, weight_mode, relu_sel, skip_stage0,
     input [int_bits-1:0] in[8:0],BN_config_in[1:0],
     output [int_bits-1:0] out[8:0],
-    output reg latency_out
     );
 
 

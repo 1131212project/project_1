@@ -28,6 +28,7 @@ assign {reuse_0[8], reuse_0[7], reuse_0[6], reuse_0[5], reuse_0[4], reuse_0[3], 
 assign out_g_2[int_bits*9-1:0] = {out_2[8], out_2[7], out_2[6], out_2[5], out_2[4], out_2[3], out_2[2], out_2[1], out_2[0]};
 assign out_g_1[int_bits*9-1:0] = {out_1[8], out_1[7], out_1[6], out_1[5], out_1[4], out_1[3], out_1[2], out_1[1], out_1[0]};
 assign out_g_0[int_bits*9-1:0] = {out_0[8], out_0[7], out_0[6], out_0[5], out_0[4], out_0[3], out_0[2], out_0[1], out_0[0]};
+
 genvar i;
 generate
     for( i=0; i<9; i=i+1)begin

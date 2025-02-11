@@ -7,9 +7,15 @@
 module stage1#(
     parameter int_bits=13 )(
     input clk,reset, weight_en,
-    input [int_bits-1:0] in[8:0],BN_config_in[1:0],
-    output [int_bits-1:0] out[8:0]
+    input [int_bits*2-1:0] BN_config_in_g,
+    input [int_bits*9-1:0] in_g,
+    output [int_bits*9-1:0] out_g
     );
+
+wire [int_bits-1:0] BN_config_in[1:0], in[8:0], out[8:0];
+assign {BN_config_in[1], BN_config_in[0]} = BN_config_in_g;
+assign {in[8],in[7],in[6],in[5],in[4],in[3],in[2],in[1],in[0]} = in_g;
+assign out_g = {out[8],out[7],out[6],out[5],out[4],out[3],out[2],out[1],out[0]};
 
 wire [int_bits-1:0] FM_out [8:0];
 formator_9 #( .int_bits(int_bits) ) FM_9 (
