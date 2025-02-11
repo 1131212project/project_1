@@ -2,6 +2,7 @@
 // Engineer: Felix
 // Create Date: 2025/02/05 01:13:47
 // Module Name: LB_addr
+// note test
 //////////////////////////////////////////////////////////////////////////////////
 aaaaaaaaaaaaaa
 module LB_addr#(
@@ -16,6 +17,7 @@ module LB_addr#(
 
 wire [11:0] s;
 assign s = {2'b0, layer_code[LC_bits-1-8 : LC_bits-1-8-9]} - extra_latency;
+
 
 always @(posedge fclk, posedge reset) begin
     if(reset)begin
