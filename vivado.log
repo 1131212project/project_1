@@ -924,3 +924,18 @@ Time resolution is 1 ps
 Block Memory Generator module line_buffer_tb.line_buffer.RAM_line_buffer.inst.\native_mem_module.blk_mem_gen_v8_4_5_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
 $finish called at time : 130 ns : File "D:/Project/project_1/project_1.srcs/sim_1/new/line_buffer_tb.v" Line 80
 relaunch_sim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:10 . Memory (MB): peak = 1223.293 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+close_project
+open_project D:/Project/project_1/project_1.xpr
+CRITICAL WARNING: [Project 1-19] Could not find the file 'D:/Project/project_1/project_1.srcs/sources_1/new/RAM_ROM_sys.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'D:/Project/project_1/project_1.srcs/utils_1/imports/synth_1/FP8_to_int.dcp'.
+WARNING: [Project 1-865] Could not find the file D:/Project/project_1/project_1.srcs/utils_1/imports/synth_1/FP8_to_int.dcp
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.1/data/ip'.
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Feb 11 18:42:17 2025...

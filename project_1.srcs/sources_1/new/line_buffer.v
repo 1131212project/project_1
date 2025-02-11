@@ -34,7 +34,7 @@ generate
         line_buffer_unit #( .int_bits(int_bits) ) line_buffer_unit_0(
             .clk(clk), .reset(reset), .fclk(fclk), .sel(sel),
             .in_g({in[i],reuse_0[i],reuse_1[i]}), .RAM_out(RAM_out[i]),
-            .out_g({out_g_2[i],out_g_1[i],out_g_0[i]}), .RAM_in(RAM_in[i])
+            .out_g({out_2[i],out_1[i],out_0[i]}), .RAM_in(RAM_in[i])
         );
     end
 endgenerate
