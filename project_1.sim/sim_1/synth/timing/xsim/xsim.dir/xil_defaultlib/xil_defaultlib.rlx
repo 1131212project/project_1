@@ -1,0 +1,6 @@
+0.7
+2020.2
+Apr 18 2022
+16:05:34
+D:/DigitalDesignFiles/project_1/project_1.sim/sim_1/synth/timing/xsim/BRAM_tb_time_synth.v,1738392292,verilog,,D:/DigitalDesignFiles/project_1/project_1.srcs/sim_1/new/BRAM_tb.v,,BRAM_test;IBUF_HD64;IBUF_HD65;IBUF_HD66;IBUF_HD67;IBUF_HD68;IBUF_HD69;IBUF_HD70;IBUF_HD71;IBUF_HD72;IBUF_HD73;IBUF_HD74;IBUF_HD75;IBUF_HD76;IBUF_HD77;IBUF_HD78;IBUF_HD79;IBUF_HD80;IBUF_HD81;IBUF_HD82;IBUF_HD83;IBUF_HD84;IBUF_UNIQ_BASE_;blk_mem_gen_0;blk_mem_gen_0_blk_mem_gen_generic_cstr;blk_mem_gen_0_blk_mem_gen_prim_width;blk_mem_gen_0_blk_mem_gen_prim_wrapper;blk_mem_gen_0_blk_mem_gen_top;blk_mem_gen_0_blk_mem_gen_v8_4_5;blk_mem_gen_0_blk_mem_gen_v8_4_5_synth;glbl,,,,,,,,
+D:/DigitalDesignFiles/project_1/project_1.srcs/sim_1/new/BRAM_tb.v,1738332636,verilog,,,,BRAM_tb,,,,,,,,

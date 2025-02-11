@@ -1,0 +1,15 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Project/project_1/project_1.gen/sources_1/ip/RAM_line_buffer/sim/RAM_line_buffer.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module RAM_line_buffer
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Project/project_1/project_1.srcs/sources_1/new/FP8_to_int.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FP8_to_int
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Project/project_1/project_1.srcs/sources_1/new/LB_addr.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LB_addr
+WARNING: [VRFC 10-8864] concatenation with an unsized literal will be treated as 32 bits [D:/Project/project_1/project_1.srcs/sources_1/new/LB_addr.v:18]
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Project/project_1/project_1.srcs/sources_1/new/int_to_FP8.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module int_to_FP8
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Project/project_1/project_1.srcs/sources_1/new/line_buffer.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module line_buffer
+ERROR: [VRFC 10-3642] port 'in' must not be declared to be an array [D:/Project/project_1/project_1.srcs/sources_1/new/line_buffer.v:13]
+ERROR: [VRFC 10-3642] port 'reuse' must not be declared to be an array [D:/Project/project_1/project_1.srcs/sources_1/new/line_buffer.v:14]
+ERROR: [VRFC 10-3642] port 'out' must not be declared to be an array [D:/Project/project_1/project_1.srcs/sources_1/new/line_buffer.v:15]
+ERROR: [VRFC 10-8530] module 'line_buffer' is ignored due to previous errors [D:/Project/project_1/project_1.srcs/sources_1/new/line_buffer.v:7]
