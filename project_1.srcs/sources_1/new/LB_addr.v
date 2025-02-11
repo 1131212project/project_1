@@ -4,7 +4,7 @@
 // Module Name: LB_addr
 // note test
 //////////////////////////////////////////////////////////////////////////////////
-aaaaaaaaaaaaaa
+
 module LB_addr#(
     parameter LC_bits = 20,
     parameter extra_latency = 5
