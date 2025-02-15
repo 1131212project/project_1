@@ -1,15 +1,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Engineer: Felix
 // Create Date: 2025/01/30 14:33:47
-//updated date: 2025/02/11 16:00:47
+// verified date: 2025/02/12 16:00:47 bear
 // Module Name: line_buffer
 //////////////////////////////////////////////////////////////////////////////////
 
 module line_buffer#(
-    parameter int_bits=13,
+    parameter int_bits=20,
     parameter LC_bits=20,
-    parameter extra_latency=5 )(
-    input clk,reset,fclk,valid,
+    parameter extra_latency=7 )(
+    input clk,reset,fclk,latency_in,
     input [LC_bits-1:0] layer_code,
     input [int_bits*9-1:0] in_g,
     input [int_bits*9-1:0] reuse_g_1,reuse_g_0,
@@ -34,7 +34,7 @@ generate
     for( i=0; i<9; i=i+1)begin
         line_buffer_unit #( .int_bits(int_bits) ) line_buffer_unit_0(
             .clk(clk), .reset(reset), .fclk(fclk), .sel(sel),
-            .in_g({in[i],reuse_0[i],reuse_1[i]}), .RAM_out(RAM_out[i]),
+            .in_g({in[i],reuse_1[i],reuse_0[i]}), .RAM_out(RAM_out[i]),
             .out_g({out_2[i],out_1[i],out_0[i]}), .RAM_in(RAM_in[i])
         );
     end
@@ -48,10 +48,15 @@ RAM_line_buffer RAM_line_buffer (
     .douta( { RAM_out[8],RAM_out[7],RAM_out[6],RAM_out[5],RAM_out[4],RAM_out[3],RAM_out[2],RAM_out[1],RAM_out[0]} )
 );
 
+wire latency_in_delay;
+delay2 delay2 (
+    .clk(clk), .reset(reset),
+    .in(latency_in), .out(latency_in_delay)
+);
 LB_addr #( .LC_bits(LC_bits), .extra_latency(extra_latency)) LB_addr (
-    .fclk(fclk), .reset(reset), .valid(valid),
+    .fclk(fclk), .reset(reset), .latency_in(latency_in_delay),
     .layer_code(layer_code), .addr(addr),
-    .sel(sel)
+    .sel(sel), .wea(wea)
 );
 
 endmodule

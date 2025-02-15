@@ -11,7 +11,7 @@ module formator#(
     input clk,reset,
     input [int_bits-1:0]in2,in1,in0,
     output [int_bits-1:0]out0,
-    output reg [int_bits-1:0]out2,out0
+    output reg [int_bits-1:0]out2,out1
     );
     
 reg [15:0]temp2;
@@ -20,8 +20,8 @@ assign out0 = in0;
 always @(posedge clk, posedge reset)begin
     if(reset)begin
         out1<=0;
-        out0<=0;
-        temp0<=0;
+        out2<=0;
+        temp2<=0;
     end
     else begin
         out1<=in1;

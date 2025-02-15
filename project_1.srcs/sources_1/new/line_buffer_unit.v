@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Engineer: Felix
 // Create Date: 2025/01/31 14:57:01
+// updated date: 2025/02/12 17:00:47 bear
 // Module Name: line_buffer_unit
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -12,7 +13,6 @@ module line_buffer_unit#(
     output [int_bits*3-1:0] out_g,
     output [7:0] RAM_in 
 );
-
 
 wire [int_bits-1:0] in[2:0], out[2:0];
 assign {in[2],in[1],in[0]} = in_g[int_bits*3-1:0];

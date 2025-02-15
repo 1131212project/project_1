@@ -2,37 +2,42 @@
 // Engineer: Felix
 // Create Date: 2025/02/05 01:13:47
 // Module Name: LB_addr
-// note test
 //////////////////////////////////////////////////////////////////////////////////
 
 module LB_addr#(
     parameter LC_bits = 20,
-    parameter extra_latency = 5
+    parameter extra_latency = 7
 )(
-    input fclk, reset, vaild,
+    input fclk, reset, latency_in,
     input [LC_bits-1:0] layer_code,
     output reg [9:0] addr,
-    output reg sel
-    );
+    output reg sel, wea
+);
 
-wire [11:0] s;
-assign s = {2'b0, layer_code[LC_bits-1-8 : LC_bits-1-8-9]} - extra_latency;
+wire [9:0] s_cycles,s;
+assign s_cycles = {layer_code[LC_bits-1-8 : LC_bits-1-8-9]} - extra_latency;
+assign s = {s_cycles[8:0], 1'b0};
 
+localparam idle = 0, work = 1;
+reg state;
 
 always @(posedge fclk, posedge reset) begin
     if(reset)begin
         addr <= 0;
         sel <= 1;
+        state <= idle;
+        wea <= 0;
     end
-    else begin
-        if(vaild)begin
-            addr <= (addr == s)? 1 : addr+1;
-            sel <= ~sel; 
-        end
-        else begin
-            addr <= addr;
-            sel <= sel;
-        end
+    else if(state == work)begin
+        addr <= (addr == s)? 1 : addr+1;
+        sel <= ~sel; 
+        wea <= 1;
+    end
+    else begin //state == idle
+        state <= (latency_in)? work : idle;
+        addr <= 0;
+        sel <= 1;
+        wea <= 0;
     end
 end
 

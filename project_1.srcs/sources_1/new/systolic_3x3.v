@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Engineer: Felix
 // Create Date: 2025/01/30
+//verify date: 2025/02/13 bear
 // Design Name: systolic_3x3 
 //////////////////////////////////////////////////////////////////////////////////
 module systolic_3x3#(
@@ -104,11 +105,8 @@ assign psum0   = psum0_2;
 assign psum1   = psum1_2;
 assign psum2   = psum2_2;
 
-assign in0_out = ele0_2;
-assign in1_out = ele1_2;
+assign in0_out = ele2_0;
+assign in1_out = ele2_1;
 assign in2_out = ele2_2;
 
 endmodule
-
-
-

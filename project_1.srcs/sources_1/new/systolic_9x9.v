@@ -7,11 +7,13 @@
 module systolic_9x9#(
     parameter int_bits=13 )(
     input clk, reset, weight_en,
-    input [int_bits-1:0] in[8:0],
-    input [int_bits*9-1:0] psum_in_g,
-    output [int_bits-1:0] in_out[8:0],
-    output [int_bits*9-1:0] psum_g
+    input [int_bits*9-1:0] in_g,psum_in_g,
+    output [int_bits*9-1:0] in_out_g,psum_g
 );
+
+wire [int_bits-1:0] in[8:0], in_out[8:0];
+assign {in[8],in[7],in[6],in[5],in[4],in[3],in[2],in[1],in[0]} = in_g;
+assign in_out_g = {in_out[8],in_out[7],in_out[6],in_out[5],in_out[4],in_out[3],in_out[2],in_out[1],in_out[0]};
 
 wire [int_bits*9-1:0] psum_row[8:0];
 systolic_9x1_row#( .int_bits(int_bits) ) ST_row (
